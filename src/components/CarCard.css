@@ -1,0 +1,421 @@
+/* --- Individual Card Styling --- */
+.car-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #efefef;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer; /* Indicates the card is clickable for gallery */
+}
+
+.car-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Image Section */
+.car-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.car-card:hover .car-image img {
+    transform: scale(1.05);
+}
+
+/* Info Section */
+.car-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 30px 40px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.car-info p {
+    /* FIXED: Made background darker and border more visible */
+    background: #eaeff2;
+    padding: 20px 10px;
+    border-radius: 12px;
+    border: 1px solid #d1d9e0;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.car-info strong {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.car-info span {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #222;
+}
+
+/* FIXED: Added this class container to give the title breathing room */
+.car-header {
+    padding: 25px 40px 10px 40px;
+}
+
+.car-header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #1a1a1a;
+    font-weight: 800;
+}
+
+.car-header h2 {
+    margin: 5px 0 0;
+    font-size: 1.2rem;
+    color: #007bff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Description Section - Original */
+.car-description {
+    padding: 40px;
+    background: #fff;
+}
+
+.car-description h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.car-description p {
+    line-height: 1.7;
+    color: #444;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.status-available { background: #e6fffa; color: #234e52; }
+.status-sold { background: #fff5f5; color: #822727; }
+.status-pending { background: #fffaf0; color: #7b341e; }
+
+/* Admin Actions */
+.car-actions {
+    padding: 15px 20px;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #eee;
+    /* FIXED: Added gap to separate the buttons */
+    gap: 15px;
+}
+
+.btn-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.btn-edit {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* --- Modal Base --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+/* Gallery-specific modal content override */
+.modal-content.gallery-box {
+    max-width: 80vw;
+    width: 80vw;
+    max-height: 80vh;
+    height: 80vh;
+    padding: 0;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #000000;
+    z-index: 100;
+}
+
+/* --- Gallery Specific Styling --- */
+.gallery-theme {
+    background: rgba(0, 0, 0, 0.9); /* Darker background for focus on photos */
+}
+
+.gallery-box {
+    max-width: 1200px; /* Wider for the slider */
+    width: 95%;
+    background: #111; /* Dark content area */
+    padding: 0;      /* Remove padding so image hits edges */
+    overflow: hidden;
+}
+
+.gallery-slider {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    padding: 0;
+    aspect-ratio: 16 / 9; /* Force 16:9 ratio */
+}
+
+.main-gallery-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.gallery-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 2100;
+}
+
+.gallery-nav button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.gallery-nav button:first-child { left: 20px; } /* Prev */
+.gallery-nav button:last-child { right: 20px; } /* Next */
+
+/* Loading State Text */
+.gallery-slider p {
+    color: white;
+    font-weight: bold;
+}
+
+/* Thumbnail Strip Container */
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: #1a1a1a;
+    overflow-x: auto;
+    flex-shrink: 0;
+    height: 120px; /* Fixed height instead of max-height */
+}
+
+/* Individual Thumbnail Wrapper */
+.thumb-item {
+    flex: 0 0 120px;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumb-item:hover {
+    opacity: 0.8;
+}
+
+/* Active Thumbnail Highlight */
+.thumb-item.active-thumb {
+    opacity: 1;
+    border-color: #007bff; /* Blue border for active photo */
+    transform: scale(1.05);
+}
+
+/* Custom Scrollbar for Chrome/Safari */
+.gallery-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+.gallery-thumbnails::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+.gallery-close {
+    /* Positioning */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2100; /* Ensure it's on top of images */
+
+    /* Styling (Red Circle like Delete button) */
+    background: #dc3545; /* Bright Red */
+    color: white;
+    border: 0.5px solid white; /* Thick white border to make it pop */
+    border-radius: 50%; /* Perfect circle */
+    width: 44px;  /* Nice big target area */
+    height: 44px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Drop shadow for depth */
+
+    /* Centering the "X" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Font styling */
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.gallery-close:hover {
+    background: #c82333; /* Darker red on hover */
+    transform: scale(1.1); /* Grow slightly */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+.gallery-click-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40%;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.gallery-click-zone.left {
+    left: 0;
+    cursor: w-resize;
+}
+
+.gallery-click-zone.right {
+    right: 0;
+    cursor: e-resize;
+}
+
+.gallery-click-zone:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile Responsiveness - Original */
+@media (max-width: 850px) {
+    .car-info {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+    }
+    .gallery-slider {
+        height: 350px;
+    }
+}
+
+@media (max-width: 500px) {
+    .car-header h1 {
+        font-size: 2rem;
+    }
+
+    .car-info {
+        grid-template-columns: 1fr;
+    }
+
+    .car-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-edit {
+        width: 100%;
+    }
+}

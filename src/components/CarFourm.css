@@ -1,0 +1,223 @@
+/* --- Modal & Base Layout --- */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Main Form Container */
+.car-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px; /* Wider for better layout */
+    margin: 0 auto;
+    color: #333;
+    padding: 10px;
+}
+
+/* Two-Column Grid for Inputs */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* Inputs & Selects */
+.car-form input,
+.car-form select,
+.car-form textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+}
+
+.car-form input:focus,
+.car-form select:focus,
+.car-form textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    outline: none;
+}
+
+.car-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* --- Buttons --- */
+.submit-btn {
+    background: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #0056b3;
+}
+
+/* --- Cropper Section --- */
+.cropper-section {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cropper-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Fixed height for cropper */
+    background: #000;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Zoom Slider */
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.zoom-range {
+    flex: 1;
+    cursor: pointer;
+}
+
+/* Cropper Action Buttons */
+.crop-controls {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.crop-save-btn, .crop-cancel-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.crop-save-btn { background: #28a745; color: white; }
+.crop-save-btn:hover { background: #218838; }
+
+.crop-cancel-btn { background: #dc3545; color: white; }
+.crop-cancel-btn:hover { background: #c82333; }
+
+
+/* --- Image Gallery Grid (The New Part) --- */
+.manager-content {
+    text-align: center;
+}
+
+.image-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    display: grid;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px dashed #ced4da;
+}
+
+/* Individual Image Card */
+.image-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Enforce standard shape */
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Buttons on top of images (Delete / Star) */
+.img-btn {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+}
+
+.img-btn:hover { transform: scale(1.1); }
+
+/* The Red X (Top Right) */
+.delete-btn {
+    top: 5px;
+    right: 5px;
+    background: rgba(220, 53, 69, 0.95); /* Red */
+    color: white;
+    z-index: 10;
+}
+
+/* The Gold Star (Bottom Left) */
+.main-btn {
+    bottom: 5px;
+    left: 5px;
+    background: rgba(255, 193, 7, 0.95); /* Gold */
+    color: black;
+    z-index: 10;
+}
+
+/* The Green "Main" Label */
+.main-badge {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: #28a745; /* Green */
+    color: white;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* File Input Area */
+.file-upload-wrapper {
+    margin: 20px 0;
+}
+
+/* Hover Effects */
+.delete-btn:hover { background: #dc3545; transform: scale(1.1); }
+.main-btn:hover { background: #e0a800; transform: scale(1.1); }

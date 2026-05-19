@@ -1,0 +1,18 @@
+/* src/index.css */
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: block; /* Changes it from 'flex' back to normal 'block' */
+  min-height: 100vh;
+  font-family: sans-serif;
+  background-color: #f4f4f4; /* Light grey background for the app */
+}
+
+#root {
+  width: 100%; /* Ensures the app takes up the full width */
+}
