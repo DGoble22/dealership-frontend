@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 
 export default function Inventory({ isAdmin }) {
     const [cars, setCars] = useState([]); //Start with empty cars array
+    const API_URL = import.meta.env.VITE_API_URL;
 
     // Modal states
     const [showSpecsModal, setShowSpecsModal] = useState(false);
@@ -16,7 +17,7 @@ export default function Inventory({ isAdmin }) {
     //loads all cars from database
     const fetchCars = async () => {
         try {
-            const response = await fetch("http://localhost/dealership-project/backend/api/get_cars.php");
+            const response = await fetch(API_URL + "/get_cars");
             const result = await response.json();
             if (result.status === "success") setCars(result.data);
         } catch (error) {

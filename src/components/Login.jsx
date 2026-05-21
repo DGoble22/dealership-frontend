@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./AuthModal.css";
 
 export default function Login({ onClose, onSwitchToRegister }) {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -16,7 +18,7 @@ export default function Login({ onClose, onSwitchToRegister }) {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost/dealership-project/backend/api/login.php", {
+            const response = await fetch(API_URL + "/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)

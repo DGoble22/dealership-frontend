@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./AuthModal.css";
 
 export default function Register({ onClose, onSwitchToLogin }) {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -20,7 +22,7 @@ export default function Register({ onClose, onSwitchToLogin }) {
         e.preventDefault();
 
         try {
-            const response = await fetch("http://localhost/dealership-project/backend/api/register.php", {
+            const response = await fetch(API_URL + "/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)

@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import "./CarFourm.css";
 
 export default function AddCar({onSuccess}) {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     // Data to be sent to backend
     const [formData, setFormData] = useState({
         make: "",
@@ -29,7 +31,7 @@ export default function AddCar({onSuccess}) {
 
 
         try{
-            const response = await fetch("http://localhost/dealership-project/backend/api/add_car.php", {
+            const response = await fetch(API_URL + "/add_car", {
                 method: "POST",
                 body: data,
             });

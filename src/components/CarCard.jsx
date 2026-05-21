@@ -5,6 +5,8 @@ import UpdateCar from "../components/UpdateCar.jsx";
 import ImageManager from "../components/ImageManager.jsx";
 
 const CarCard = ({car, isAdmin}) =>  {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const [showForm, setShowForm] = useState(false);
     const [showGallery, setShowGallery] = useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
@@ -16,7 +18,7 @@ const CarCard = ({car, isAdmin}) =>  {
         if(galleryImages.length > 0) return; //Gallery already loaded
 
         try{
-            const response = await fetch(`http://localhost/dealership-project/backend/api/get_car_images.php?carid=${car.carid}`);
+            const response = await fetch(`${API_URL}/get_car_images?carid=${car.carid}`);
             const result = await response.json();
 
             if(result.status === "success") {
@@ -46,8 +48,8 @@ const CarCard = ({car, isAdmin}) =>  {
 
         if (window.confirm('Delete ' + car.year + ' ' + car.model + '?')) {
             try{
-                const response = await fetch(`http://localhost/dealership-project/backend/api/delete_car.php`, {
-                method: "POST",
+                const response = await fetch(API_URL + "/delete_car", {
+                    method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify({carid: car.carid}),
             });

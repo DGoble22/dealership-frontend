@@ -2,6 +2,8 @@ import React, { useState} from "react";
 import "./CarFourm.css";
 
 export default function UpdateCar({car, onSuccess}) {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const [formData, setFormData] = useState({
         carid: car.carid,
         make: "",
@@ -39,7 +41,7 @@ export default function UpdateCar({car, onSuccess}) {
         }
 
         try{
-            const responce = await fetch("http://localhost/dealership-project/backend/api/update_car.php", {
+            const responce = await fetch(API_URL + "/update_car", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(filteredData),

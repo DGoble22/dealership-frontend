@@ -4,6 +4,8 @@ import getCroppedImage from "./cropImage.jsx";
 import "./CarFourm.css";
 
 export default function ImageManager({ carId, onDone }) {
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const [images, setImages] = useState([]);
 
     // Cropper States
@@ -16,7 +18,7 @@ export default function ImageManager({ carId, onDone }) {
 
     // Fetch Existing Images
     useEffect(() => {
-        fetch(`http://localhost/dealership-project/backend/api/get_car_images.php?carid=${carId}`)
+        fetch(API_URL + `/get_car_images?carid=${carId}`)
             .then(res => res.json())
             .then(res => { if(res.status === 'success') setImages(res.data); });
     }, [carId]);
@@ -48,7 +50,7 @@ export default function ImageManager({ carId, onDone }) {
             formData.append("image", croppedFile);
 
             // Calls the script we discussed earlier
-            const res = await fetch("http://localhost/dealership-project/backend/api/add_single_image.php", {
+            const res = await fetch(API_URL + "/add_single_image", {
                 method: "POST", body: formData
             });
             const result = await res.json();
@@ -72,7 +74,7 @@ export default function ImageManager({ carId, onDone }) {
     // 4. Delete Logic
     const handleDelete = async (picid) => {
         if(!confirm("Delete image?")) return;
-        const res = await fetch("http://localhost/dealership-project/backend/api/delete_image.php", {
+        const res = await fetch(API_URL + "/delete_image", {
             method: "POST", body: JSON.stringify({ carid: carId, picid: picid })
         });
         const result = await res.json();
@@ -83,7 +85,7 @@ export default function ImageManager({ carId, onDone }) {
 
     // 5. Set Main Logic
     const handleSetMain = async (picid) => {
-        const res = await fetch("http://localhost/dealership-project/backend/api/set_is_main.php", {
+        const res = await fetch(API_URL + "/set_is_main", {
             method: "POST", body: JSON.stringify({ carid: carId, picid: picid })
         });
         const result = await res.json();
