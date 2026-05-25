@@ -14,7 +14,8 @@ export default function AddCar({onSuccess}) {
         price: "",
         vin: "",
         status: "Available",
-        description: ""
+        description: "",
+        color: ""
     });
 
     // Helper function to handle changes in form inputs. It updates the formData state with the new values as the user types or selects options. The function uses the name attribute of the input fields to determine which part of the formData to update.
@@ -71,6 +72,7 @@ export default function AddCar({onSuccess}) {
                 <input type="number" name="miles" placeholder="Miles" onChange={handleChange} required />
                 <input type="number" name="price" placeholder="Price" onChange={handleChange} required />
                 <input type="text" name="vin" placeholder="Vin #" onChange={handleChange} required />
+                <input type="text" name="color" placeholder="Color" onChange={handleChange} required />
                 <select name="status" onChange={handleChange}>
                     <option value="Available">Available</option>
                     <option value="Pending">Pending</option>
