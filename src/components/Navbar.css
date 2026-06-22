@@ -1,64 +1,158 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     padding: 1rem 2rem;
-    background-color: #2c3e50;
+    background: linear-gradient(135deg, #0f172a 0%, #1d3557 52%, #27496d 100%);
     color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    box-shadow: 0 10px 30px rgba(16, 32, 51, 0.18);
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .nav-logo {
+    justify-self: start;
     font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .nav-links {
+    justify-self: center;
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 10px;
     margin: 0;
     padding: 0;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    align-items: center;
 }
 
-.nav-links a {
+.nav-link-pill {
     color: #e0e0e0;
     text-decoration: none;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 999px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.nav-links a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.nav-link-pill:hover,
+.nav-link-pill.active {
     color: white;
+    background-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 .nav-button {
-    background: darkgray;
+    background: rgba(255, 255, 255, 0.14);
     color: white;
     border: none;
     padding: 10px 24px;
-    border-radius: 8px;
+    border-radius: 999px;
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    justify-self: end;
+    width: fit-content;
 }
 
 .nav-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    background: gray;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .nav-button:active {
     transform: translateY(0);
+}
+
+.nav-auth-controls {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.nav-auth-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.nav-logout-button {
+    min-height: 42px;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-view-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.nav-view-toggle.is-admin {
+    background: linear-gradient(135deg, #d64545, #a91f2b);
+}
+
+.nav-view-toggle.is-user {
+    background: linear-gradient(135deg, #a9b2bd, #7f8b99);
+}
+
+.nav-view-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.24);
+    filter: brightness(1.04);
+}
+
+@media (max-width: 820px) {
+    .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-auth-controls {
+        align-items: center;
+    }
+
+    .nav-auth-row {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

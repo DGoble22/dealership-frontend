@@ -9,25 +9,36 @@ const createImage = (url) =>
     });
 
 export default async function getCroppedImage(imageSrc, pixelCrop) {
+    if (!imageSrc || !pixelCrop) {
+        throw new Error("Missing image source or crop area");
+    }
+
     const image = await createImage(imageSrc);
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
 
     if (!ctx){return null;}
 
-    canvas.width = pixelCrop.width;
-    canvas.height = pixelCrop.height;
+    const safeCrop = {
+        x: Math.max(0, Math.floor(pixelCrop.x || 0)),
+        y: Math.max(0, Math.floor(pixelCrop.y || 0)),
+        width: Math.max(1, Math.floor(pixelCrop.width || 0)),
+        height: Math.max(1, Math.floor(pixelCrop.height || 0)),
+    };
+
+    canvas.width = safeCrop.width;
+    canvas.height = safeCrop.height;
 
     ctx.drawImage(
         image,
-        pixelCrop.x,
-        pixelCrop.y,
-        pixelCrop.width,
-        pixelCrop.height,
+        safeCrop.x,
+        safeCrop.y,
+        safeCrop.width,
+        safeCrop.height,
         0,
         0,
-        pixelCrop.width,
-        pixelCrop.height
+        safeCrop.width,
+        safeCrop.height
     );
 
     // Convert canvas to a File object (Blob)

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {notifyError, notifySuccess} from "../utils/notify";
 import "./AuthModal.css";
 
 export default function Login({ onClose, onSwitchToRegister }) {
@@ -18,7 +19,7 @@ export default function Login({ onClose, onSwitchToRegister }) {
         e.preventDefault();
 
         try {
-            const response = await fetch(API_URL + "/login", {
+            const response = await fetch(API_URL + "/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
@@ -26,15 +27,17 @@ export default function Login({ onClose, onSwitchToRegister }) {
 
             const result = await response.json();
             if (result.status === "success") {
-                alert("Login successful!");
+                notifySuccess("Login successful!");
+                localStorage.setItem("auth_token", result.token || "");
+                localStorage.setItem("auth_user", JSON.stringify(result.user || {}));
+                window.dispatchEvent(new Event("auth-changed"));
                 onClose();
-                // TODO: Store session/token
             } else {
-                alert(result.message || "Login failed");
+                notifyError(result.message || "Login failed");
             }
         } catch (e) {
             console.error("Login Failed: ", e);
-            alert("An error occurred during login");
+            notifyError("An error occurred during login");
         }
     };
 

@@ -1,0 +1,624 @@
+/* --- Modal & Base Layout --- */
+body.modal-open {
+    overflow: hidden;
+}
+
+.car-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    color: var(--text);
+    padding: 4px;
+}
+
+.car-form-hero {
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(22, 58, 99, 0.98), rgba(31, 79, 123, 0.96));
+    color: white;
+    box-shadow: var(--shadow);
+}
+
+.car-form-eyebrow {
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.car-form-hero h2 {
+    margin: 0;
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+}
+
+.car-form-hero p:last-child {
+    margin: 8px 0 0;
+    max-width: 60ch;
+    color: rgba(255, 255, 255, 0.84);
+    line-height: 1.65;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.field-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field-wrap label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #51657a;
+}
+
+.field-wrap-full {
+    grid-column: 1 / -1;
+}
+
+.car-form input,
+.car-form select,
+.car-form textarea {
+    padding: 13px 14px;
+    border: 1px solid rgba(16, 32, 51, 0.12);
+    border-radius: 14px;
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--text);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 1px 2px rgba(16, 32, 51, 0.04);
+}
+
+.car-form input:focus,
+.car-form select:focus,
+.car-form textarea:focus {
+    border-color: #1f4f7b;
+    box-shadow: 0 0 0 4px rgba(31, 79, 123, 0.12);
+    outline: none;
+}
+
+.car-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.car-form textarea::placeholder,
+.car-form input::placeholder {
+    color: #7a8da1;
+}
+
+.car-form select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #5b6f84 50%), linear-gradient(135deg, #5b6f84 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 36px;
+}
+
+.notify-checkbox-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #4a5568;
+    cursor: pointer;
+    margin-top: 4px;
+    user-select: none;
+}
+
+.notify-checkbox-wrap input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    accent-color: #163a63;
+    flex-shrink: 0;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #1f4f7b, #163a63);
+    color: white;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    margin-top: 8px;
+    box-shadow: 0 10px 24px rgba(16, 32, 51, 0.16);
+}
+
+.submit-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+}
+
+.close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(16, 32, 51, 0.12);
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--text);
+    font-size: 1.6rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(16, 32, 51, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    transform: translateY(-1px);
+    background: white;
+}
+
+.quick-picks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quick-pick-group {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quick-pick-group label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #51657a;
+}
+
+.quick-pick-btn {
+    border: 1px solid rgba(31, 79, 123, 0.16);
+    background: #f3f7fb;
+    color: #173a60;
+    border-radius: 999px;
+    padding: 7px 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.88rem;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.quick-pick-btn:hover {
+    transform: translateY(-1px);
+    background: #e8f0f8;
+    border-color: rgba(31, 79, 123, 0.24);
+}
+
+.toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.toggle-btn {
+    border: 1px solid rgba(31, 79, 123, 0.16);
+    background: #f3f7fb;
+    color: #173a60;
+    border-radius: 999px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.88rem;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.toggle-btn:hover {
+    transform: translateY(-1px);
+    background: #e8f0f8;
+    border-color: rgba(31, 79, 123, 0.24);
+}
+
+.toggle-btn.active {
+    background: linear-gradient(135deg, #1f4f7b, #163a63);
+    color: white;
+    border-color: transparent;
+}
+
+/* --- Cropper Section --- */
+.image-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: min(920px, 100%);
+}
+
+.image-manager-hero {
+    margin-bottom: 2px;
+}
+
+.image-status-message {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #f9efe9;
+    border: 1px solid #f0d2c2;
+    color: #7f2f0c;
+    font-weight: 600;
+}
+
+.cropper-section {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(16, 32, 51, 0.12);
+    box-shadow: 0 10px 28px rgba(16, 32, 51, 0.08);
+    padding: 16px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cropper-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.crop-progress {
+    margin: 0;
+    font-weight: 700;
+    color: #173a60;
+}
+
+.crop-filename {
+    margin: 0;
+    color: #51657a;
+    font-size: 0.9rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cropper-container {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background: #000;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.zoom-controls label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #51657a;
+}
+
+.zoom-controls span {
+    min-width: 3.3ch;
+    text-align: right;
+    color: #173a60;
+    font-weight: 700;
+}
+
+.zoom-range {
+    flex: 1;
+    cursor: pointer;
+}
+
+.crop-controls {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.crop-save-btn, .crop-cancel-btn {
+    padding: 11px 16px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.crop-save-btn {
+    background: linear-gradient(135deg, #1f4f7b, #163a63);
+    color: white;
+}
+
+.crop-save-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+}
+
+.crop-cancel-btn {
+    background: #e9eff6;
+    color: #173a60;
+}
+
+.crop-cancel-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(0.98);
+}
+
+.crop-save-btn:disabled,
+.crop-cancel-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.manager-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.image-manager-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.upload-btn {
+    border: 1px solid rgba(31, 79, 123, 0.16);
+    background: #f3f7fb;
+    color: #173a60;
+    border-radius: 12px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.upload-btn:hover {
+    transform: translateY(-1px);
+    background: #e8f0f8;
+    border-color: rgba(31, 79, 123, 0.24);
+}
+
+.image-upload-input {
+    display: none;
+}
+
+.image-manager-finish-btn {
+    margin-top: 0;
+    margin-left: auto;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.74);
+    border-radius: 16px;
+    border: 1px dashed #c5d4e2;
+}
+
+.image-empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(16, 32, 51, 0.08);
+}
+
+.image-empty-state p {
+    margin: 0;
+    color: #51657a;
+    font-weight: 600;
+}
+
+.image-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(16, 32, 51, 0.1);
+    background: #fff;
+    border: 1px solid rgba(16, 32, 51, 0.08);
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img-btn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.img-btn:hover { transform: scale(1.1); }
+
+.delete-btn {
+    top: 8px;
+    right: 8px;
+    background: rgba(220, 53, 69, 0.95);
+    color: white;
+    z-index: 10;
+}
+
+.main-btn {
+    bottom: 8px;
+    left: 8px;
+    background: rgba(255, 193, 7, 0.95);
+    color: black;
+    z-index: 10;
+}
+
+.main-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: #28a745;
+    color: white;
+    font-size: 11px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.delete-btn:hover { background: #dc3545; transform: scale(1.1); }
+.main-btn:hover { background: #e0a800; transform: scale(1.1); }
+
+.focal-btn {
+    top: 8px;
+    left: 8px;
+    background: rgba(23, 58, 96, 0.78);
+    color: white;
+    font-size: 15px;
+    z-index: 10;
+}
+
+.focal-btn:hover {
+    background: rgba(23, 58, 96, 0.95);
+    transform: scale(1.1);
+}
+
+.focal-btn.active {
+    background: #163a63;
+    box-shadow: 0 0 0 2px white, 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.focal-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #163a63;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9;
+}
+
+.image-card.focal-mode {
+    cursor: crosshair;
+    outline: 2px solid #1f4f7b;
+    outline-offset: -2px;
+}
+
+.image-card.focal-mode img {
+    pointer-events: none;
+}
+
+.focal-mode-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 39, 68, 0.82);
+    color: white;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 6px;
+    pointer-events: none;
+    z-index: 11;
+}
+
+@media (max-width: 640px) {
+    .car-form {
+        gap: 14px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field-wrap-full,
+    .quick-pick-group {
+        grid-column: auto;
+    }
+
+    .car-form-hero {
+        padding: 16px;
+    }
+
+    .close-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.4rem;
+        top: 10px;
+        right: 10px;
+    }
+
+    .image-manager {
+        min-width: 0;
+    }
+
+    .cropper-container {
+        height: 300px;
+    }
+
+    .crop-controls {
+        justify-content: stretch;
+        flex-direction: column;
+    }
+
+    .crop-save-btn,
+    .crop-cancel-btn {
+        width: 100%;
+    }
+
+    .image-manager-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .image-manager-finish-btn {
+        margin-left: 0;
+    }
+}

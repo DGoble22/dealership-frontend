@@ -1,18 +1,68 @@
-/* src/index.css */
 :root {
+  --bg: #eef4fb;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: #ffffff;
+  --surface-soft: #f7fbff;
+  --border: #d9e5f1;
+  --text: #102033;
+  --muted: #5c7188;
+  --brand: #163a63;
+  --brand-strong: #0f2744;
+  --accent: #d7a64b;
+  --accent-soft: #f7ead0;
+  --shadow: 0 18px 40px rgba(16, 32, 51, 0.08);
+  --shadow-strong: 0 28px 60px rgba(16, 32, 51, 0.16);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  display: block; /* Changes it from 'flex' back to normal 'block' */
   min-height: 100vh;
-  font-family: sans-serif;
-  background-color: #f4f4f4; /* Light grey background for the app */
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.75), transparent 30%),
+    linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 #root {
-  width: 100%; /* Ensures the app takes up the full width */
+  width: 100%;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  width: 100%;
+  padding: 24px 20px 72px;
+  flex: 1;
+}
+
+.page-shell {
+  max-width: 1240px;
+  margin: 0 auto;
 }
