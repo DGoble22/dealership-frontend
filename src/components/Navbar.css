@@ -81,6 +81,35 @@
     transform: translateY(0);
 }
 
+.demo-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    color: #9a2c00;
+    border-bottom: 1px solid rgba(154, 44, 0, 0.16);
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 12px rgba(154, 44, 0, 0.08);
+}
+
+.demo-banner-close {
+    background: transparent;
+    border: none;
+    color: #9a2c00;
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+.demo-banner-close:hover {
+    opacity: 0.8;
+}
+
 .nav-auth-controls {
     justify-self: end;
     display: flex;

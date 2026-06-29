@@ -8,6 +8,10 @@ const Navbar = ({ isAdmin, setIsAdmin }) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     const [authUser, setAuthUser] = useState(null);
+    const [showDemoBanner, setShowDemoBanner] = useState(() => {
+        if (typeof window === "undefined") return true;
+        return localStorage.getItem("demo-banner-dismissed") !== "true";
+    });
 
     const isAdminRole = (roleValue) => String(roleValue || "").trim().toLowerCase() === "admin";
 
@@ -47,6 +51,11 @@ const Navbar = ({ isAdmin, setIsAdmin }) => {
         setAuthUser(null);
         setIsAdmin(false);
         window.dispatchEvent(new Event("auth-changed"));
+    };
+
+    const handleDismissDemoBanner = () => {
+        setShowDemoBanner(false);
+        localStorage.setItem("demo-banner-dismissed", "true");
     };
 
     return (
@@ -91,6 +100,15 @@ const Navbar = ({ isAdmin, setIsAdmin }) => {
                     <button className="nav-button" onClick={handleOpenLogin}>Login</button>
                 )}
             </nav>
+
+            {showDemoBanner && (
+                <div className="demo-banner" role="status" aria-live="polite">
+                    <span>Demo site only — do not enter real personal information, payments, or sensitive data.</span>
+                    <button type="button" className="demo-banner-close" onClick={handleDismissDemoBanner} aria-label="Dismiss demo notice">
+                        ×
+                    </button>
+                </div>
+            )}
 
             {showLogin && (
                 <Login
