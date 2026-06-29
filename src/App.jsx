@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {HashRouter, Routes, Route} from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 
 //Page Imports
@@ -35,7 +35,7 @@ function App() {
     }, []);
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className="App">
                 <Navbar isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
                 <main className="app-main">
@@ -52,7 +52,7 @@ function App() {
                 <Footer />
                 <ToastViewport />
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
