@@ -61,7 +61,10 @@ const Navbar = ({ isAdmin, setIsAdmin }) => {
     return (
         <>
             <nav className="navbar">
-                <Link to="/" className="nav-logo">Tahoe Kings</Link>
+                <Link to="/" className="nav-logo">
+                    <img src="/TahoeKingsFavicon.png" alt="Tahoe Kings logo" className="nav-logo-icon" />
+                    <span>Tahoe Kings</span>
+                </Link>
                 <ul className="nav-links">
                     <li>
                         <NavLink to="/inventory" className={({ isActive }) => `nav-link-pill ${isActive ? "active" : ""}`}>

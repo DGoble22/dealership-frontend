@@ -55,7 +55,7 @@ export default function Contact() {
                         </li>
                         <li>
                             <span className="contact-icon">📍</span>
-                            <span>South Lake Tahoe, CA</span>
+                            <span>Flanders, NJ</span>
                         </li>
                     </ul>
                 </div>
